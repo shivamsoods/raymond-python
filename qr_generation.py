@@ -15,7 +15,9 @@ class PDF(FPDF):
     def addInfo(self,codeText,s1,s2,w,h):
         self.rect(s1, s2, w,h)
         img=qrcode.make(codeText)
+        # Saving each QR code to a qrCodes folder
         img.save("qrCodes/"+codeText+".png")
+        # Accessing the saved QR image
         self.image("qrCodes/"+codeText+".png", x=s1 +1.5,y=s2+1.5,link='', type='', w=35, h=35)
 
         self.set_font('Arial', '', 10)
@@ -34,7 +36,7 @@ with open('code_list.csv', mode ='r') as file:
 
     itemCount=0
 
-    # mMargin from start of sheet
+    # Margin from start of sheet
     s1=4.0
 
     # Margin from top of sheet
